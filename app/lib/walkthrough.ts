@@ -27,7 +27,7 @@ export function buildWalkthroughEmail(request: WalkthroughRequest) {
     "",
     `Full name: ${request.fullName}`,
     `Business name: ${request.businessName}`,
-    `Work email: ${request.workEmail}`,
+    `Email: ${request.workEmail}`,
     `Business type: ${request.businessType}`,
     `Approximate team size: ${request.teamSize}`,
     `Current rota or scheduling method: ${request.schedulingMethod}`,

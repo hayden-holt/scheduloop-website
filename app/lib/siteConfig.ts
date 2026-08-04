@@ -2,8 +2,7 @@ export const siteConfig = {
   name: "ScheduleLoop",
   url: "https://scheduleloop.co.uk",
   contactEmail: "hayden@hayden-holt.com",
-  legalBusinessName: "[LEGAL BUSINESS NAME]",
-  registeredAddress: "[REGISTERED ADDRESS, IF APPLICABLE]",
+  legalBusinessName: "ScheduleLoop",
   founderNames: "Hayden Holt and Jake Moore",
   founderLocation: "[LOCATION]",
   linkedInUrl: "",
@@ -22,5 +21,5 @@ export const siteConfig = {
   },
 };
 
-export const primaryCta = "Book a Free Walkthrough";
+export const primaryCta = "Request a Free Walkthrough";
 export const secondaryCta = "Try the Demo";

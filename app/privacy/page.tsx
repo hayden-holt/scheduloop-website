@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <h2>Who we are</h2>
         <p>
           ScheduleLoop is operated by {siteConfig.legalBusinessName}. Contact:
-          {" "}{siteConfig.contactEmail}. Registered address: {siteConfig.registeredAddress}.
+          {" "}{siteConfig.contactEmail}.
         </p>
 
         <h2>Information we collect</h2>
@@ -66,12 +66,6 @@ export default function PrivacyPage() {
           ScheduleLoop does not currently describe any non-essential analytics or marketing
           cookies on this website. If analytics are added later, this policy should be updated
           to explain what is collected and why.
-        </p>
-
-        <h2>Important note</h2>
-        <p>
-          This early-stage policy is intended to describe the current product honestly. It is
-          not legal advice and should be reviewed before relying on it for customer contracts.
         </p>
       </section>
       <SiteFooter />

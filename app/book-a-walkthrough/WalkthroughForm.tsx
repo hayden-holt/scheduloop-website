@@ -62,7 +62,7 @@ export function WalkthroughForm() {
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(request.workEmail.trim())) {
-      setError("Enter a valid work email address.");
+      setError("Enter a valid email address.");
       return;
     }
 
@@ -118,7 +118,7 @@ export function WalkthroughForm() {
       </div>
 
       <label className="field-label" htmlFor="work-email">
-        Work email
+        Email
       </label>
       <input
         id="work-email"

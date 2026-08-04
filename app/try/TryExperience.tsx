@@ -199,6 +199,10 @@ export function TryExperience() {
             <p>
               These are staffing requirements, not named employee assignments.
             </p>
+            <p className="coverage-note">
+              Changes between blocks represent staggered shift start and finish times,
+              not one-hour employee shifts.
+            </p>
             <div className="staffing-timeline">
               {scenario.blocks.map((block) => (
                 <div key={`${block.start}-${block.end}-${block.staff}`}>
@@ -206,6 +210,14 @@ export function TryExperience() {
                   <strong>{block.staff}</strong>
                 </div>
               ))}
+            </div>
+            <div className="shift-example" aria-label="Illustrative shift arrangement">
+              <span>Illustrative shift arrangement, not an automatic employee rota</span>
+              <ul>
+                <li>Employee A: 07:00-15:00</li>
+                <li>Employee B: 07:00-14:00</li>
+                <li>Employee C: 08:00-16:00</li>
+              </ul>
             </div>
           </article>
 

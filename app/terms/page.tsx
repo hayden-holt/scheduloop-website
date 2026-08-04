@@ -23,7 +23,7 @@ export default function TermsPage() {
         <h2>Who provides ScheduleLoop</h2>
         <p>
           ScheduleLoop is provided by {siteConfig.legalBusinessName}. Contact:
-          {" "}{siteConfig.contactEmail}. Registered address: {siteConfig.registeredAddress}.
+          {" "}{siteConfig.contactEmail}.
         </p>
 
         <h2>What ScheduleLoop does</h2>

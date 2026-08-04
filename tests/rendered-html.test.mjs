@@ -28,7 +28,7 @@ test("renders the ScheduleLoop marketing page", async () => {
   const html = await response.text();
 
   assert.match(html, /ScheduleLoop/);
-  assert.match(html, /Book a Free Walkthrough/);
+  assert.match(html, /Request a Free Walkthrough/);
   assert.match(html, /Try the Demo/);
   assert.match(html, /href="\/sign-in"/);
   assert.match(html, /href="\/try"/);

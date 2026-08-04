@@ -1457,7 +1457,7 @@ textarea:focus-visible {
 .staffing-timeline {
   display: grid;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .staffing-timeline div {
@@ -1479,6 +1479,43 @@ textarea:focus-visible {
   background: #e7f0ff;
   color: var(--blue-dark);
   font-size: 1.05rem;
+}
+
+.coverage-note {
+  margin: 12px 0 0;
+  border-left: 3px solid var(--blue);
+  background: #f7fbff;
+  color: #405c83;
+  padding: 10px 12px;
+}
+
+.shift-example {
+  margin-top: 14px;
+  border: 1px dashed rgba(53, 120, 255, 0.32);
+  border-radius: 8px;
+  background: rgba(237, 245, 255, 0.72);
+  padding: 12px;
+}
+
+.shift-example span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.shift-example ul {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shift-example li {
+  color: var(--ink);
+  font-weight: 800;
 }
 
 .block-list,

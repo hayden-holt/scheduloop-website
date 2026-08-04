@@ -5,14 +5,14 @@ import { primaryCta, secondaryCta, siteConfig } from "../lib/siteConfig";
 import { WalkthroughForm } from "./WalkthroughForm";
 
 export const metadata: Metadata = {
-  title: "Book a Free Walkthrough | ScheduleLoop",
+  title: "Request a Free Walkthrough | ScheduleLoop",
   description:
     "Request a short ScheduleLoop walkthrough showing how expected demand can become a practical staffing plan.",
   alternates: {
     canonical: "/book-a-walkthrough",
   },
   openGraph: {
-    title: "Book a Free Walkthrough | ScheduleLoop",
+    title: "Request a Free Walkthrough | ScheduleLoop",
     description:
       "Tell us about your business and see how ScheduleLoop could support staffing decisions before the rota is built.",
     url: `${siteConfig.url}/book-a-walkthrough`,
