@@ -31,11 +31,13 @@ export function AppShell({ title, description, active, children }: AppShellProps
       <div className="product-app">
         <aside className="app-sidebar">
           <Link className="brand-link" href="/" aria-label="ScheduleLoop home">
-            <span className="brand-mark" aria-hidden="true">SL</span>
-            <span>
-              <strong>ScheduleLoop</strong>
-              <small>Planner view</small>
-            </span>
+            <img
+              src="/brand-logo.png"
+              alt="ScheduleLoop"
+              width={1087}
+              height={245}
+              className="brand-logo"
+            />
           </Link>
           <nav aria-label="Product navigation">
             {navItems.map((item) => (

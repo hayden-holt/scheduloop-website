@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
-import { TryExperience } from "./TryExperience";
 
 export const metadata: Metadata = {
-  title: "Try ScheduleLoop | Interactive Staffing Demo",
+  title: "Try ScheduleLoop | Staffing Planning Preview",
   description:
-    "Choose a business, adjust the day and see how expected demand becomes a practical staffing plan.",
+    "See how ScheduleLoop turns demand patterns into practical staffing guidance.",
 };
 
 export default function TryPage() {
@@ -15,16 +14,52 @@ export default function TryPage() {
       <SiteHeader />
       <section className="try-intro" aria-labelledby="try-title">
         <div>
-          <p className="eyebrow">Interactive demo</p>
+          <p className="eyebrow">Product preview</p>
           <h1 id="try-title">See how ScheduleLoop plans a working day</h1>
           <p>
-            Choose a business, adjust the day and see how expected demand becomes
-            a practical staffing plan.
+            Get a clearer feel for the planner before creating an account. The
+            product starts with demand, turns it into staffing guidance, and
+            leaves room for manager judgement.
           </p>
         </div>
-        <p className="demo-note">No account required. This example uses demonstration data.</p>
+        <p className="demo-note">Preview only. Create an account to configure your own business.</p>
       </section>
-      <TryExperience />
+      <section className="try-product-preview" aria-label="ScheduleLoop product preview">
+        <div className="preview-copy-panel">
+          <p className="eyebrow">What the app shows</p>
+          <h2>Forecasts become practical cover blocks.</h2>
+          <p>
+            ScheduleLoop is designed to show the shape of the day, the busiest
+            period, confidence, role requirements and rota guidance in one place.
+          </p>
+          <div className="preview-points">
+            <span>Staff hours</span>
+            <span>Role peaks</span>
+            <span>Busiest window</span>
+            <span>Manager context</span>
+          </div>
+        </div>
+        <figure className="preview-product-shot">
+          <img src="/screens/shape-of-day.png" alt="ScheduleLoop planner with staffing chart and day controls" />
+        </figure>
+      </section>
+      <section className="try-preview-grid" aria-label="ScheduleLoop planning flow">
+        <article>
+          <span>1</span>
+          <h3>Start with demand</h3>
+          <p>Use trading history, day type and local context to understand where pressure rises and falls.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h3>Review cover</h3>
+          <p>Translate demand into steady staffing requirements instead of noisy one-hour spikes.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h3>Plan roles</h3>
+          <p>Check front of house, kitchen, reception, checkout or stock requirements separately.</p>
+        </article>
+      </section>
       <section className="cta-band" aria-labelledby="try-cta-title">
         <div>
           <p className="eyebrow">Ready for your own data?</p>

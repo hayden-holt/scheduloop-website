@@ -42,15 +42,16 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
   return (
     <header className={`site-header ${compact ? "site-header-compact" : ""}`}>
       <Link className="brand-link" href="/" aria-label="ScheduleLoop home">
-        <span className="brand-mark" aria-hidden="true">SL</span>
-        <span>
-          <strong>ScheduleLoop</strong>
-          <small>Demand-shaped staffing</small>
-        </span>
+        <img
+          src="/brand-logo.png"
+          alt="ScheduleLoop"
+          width={1087}
+          height={245}
+          className="brand-logo"
+        />
       </Link>
 
       <nav className="header-nav" aria-label="Main navigation">
-        <Link href="/try">Try ScheduleLoop</Link>
         {ready && session ? (
           <>
             <Link href="/dashboard">Open Dashboard</Link>
@@ -61,7 +62,7 @@ export function SiteHeader({ compact = false }: SiteHeaderProps) {
         ) : (
           <>
             <Link href="/sign-in">Sign In</Link>
-            <Link className="nav-cta" href="/sign-up">Create Account</Link>
+            <Link className="nav-cta" href="/sign-up">Try ScheduleLoop</Link>
           </>
         )}
       </nav>

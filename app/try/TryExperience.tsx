@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import {
-  blockLabel,
   BusinessKey,
   businessOptions,
   DayType,
@@ -27,11 +26,17 @@ export function TryExperience() {
   const selectedRole = scenario.roles.find((role) => role.key === activeRole) ?? scenario.roles[0];
   const blocks = roleBlocks(scenario, selectedRole.key);
   const labourCost = scenario.staffedHours * hourlyRate;
+  const peak = peakPoint(scenario);
+  const strongest = strongestBlock(scenario);
+  const quietest = quietestBlock(scenario);
+  const selectedBusiness = businessOptions.find((option) => option.key === business)?.label ?? "Cafe";
+  const selectedDay = dayTypeOptions.find((option) => option.key === dayType)?.label ?? "Normal";
+  const confidence = dayType === "event" ? 68 : dayType === "busy" ? 76 : dayType === "quiet" ? 72 : 82;
 
   return (
-    <section className="demo-grid" aria-label="ScheduleLoop demonstration">
+    <section className="demo-grid demo-workspace" aria-label="ScheduleLoop demonstration">
       <div className="demo-main">
-        <div className="control-panel" aria-label="Demo controls">
+        <div className="control-panel demo-command-bar" aria-label="Demo controls">
           <div>
             <span className="control-label">Business example</span>
             <div className="segmented-control">
@@ -65,47 +70,148 @@ export function TryExperience() {
               ))}
             </div>
           </div>
+          <div className="demo-scenario-status">
+            <span>Demo workspace</span>
+            <strong>{selectedBusiness} / {selectedDay} day</strong>
+            <em>No account required</em>
+          </div>
         </div>
 
-        <article className="chart-panel" aria-labelledby="chart-title">
-          <div className="panel-heading">
+        <article className="planner-preview" aria-labelledby="planner-demo-title">
+          <div className="planner-browser-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="planner-preview-header">
             <div>
-              <p className="eyebrow">Shape of the day</p>
-              <h2 id="chart-title">{scenario.label}</h2>
+              <p className="eyebrow">Planner view</p>
+              <h2 id="planner-demo-title">Today&apos;s staffing plan</h2>
               <p>{scenario.summary}</p>
             </div>
-            <div className="legend" aria-label="Chart legend">
-              <span><i className="legend-demand" /> Expected demand</span>
-              <span><i className="legend-staff" /> Recommended staffing</span>
+            <div className="planner-mode-switch" aria-label="Demo mode">
+              <span>Planner View</span>
+              <span>Setup View</span>
             </div>
           </div>
-          <ShapeChart scenario={scenario} />
-          <p className="chart-summary">
-            Accessible summary: demand is strongest around {peakPoint(scenario).time}, with
-            recommended cover reaching {peakPoint(scenario).recommendedStaff} employees.
-          </p>
+
+          <div className="planner-summary-grid">
+            <section className="planner-recommendation">
+              <p className="eyebrow">Key recommendation</p>
+              <h3>Plan for {scenario.staffedHours.toFixed(0)} staff hours today.</h3>
+              <p>
+                Strongest cover is expected around {strongest.start}-{strongest.end}.
+                Use this as guidance before creating named shifts.
+              </p>
+            </section>
+            <aside className="planner-side-stats">
+              <div>
+                <span>Busiest period</span>
+                <strong>{strongest.start}-{strongest.end}</strong>
+              </div>
+              <div>
+                <span>Confidence</span>
+                <strong>{confidence}/100</strong>
+              </div>
+            </aside>
+          </div>
+
+          <div className="planner-metric-grid">
+            <div>
+              <span>Staff hours</span>
+              <strong>{scenario.staffedHours.toFixed(1)}</strong>
+            </div>
+            <div>
+              <span>Peak demand</span>
+              <strong>{peak.expectedDemand}</strong>
+            </div>
+            <div>
+              <span>Peak cover</span>
+              <strong>{peak.recommendedStaff}</strong>
+            </div>
+            <div>
+              <span>Forecast based on</span>
+              <strong>Demo data</strong>
+            </div>
+          </div>
+
+          <div className="planner-content-grid">
+            <article className="chart-panel planner-chart-panel" aria-labelledby="chart-title">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Shape of the day</p>
+                  <h3 id="chart-title">{scenario.label}</h3>
+                </div>
+                <div className="legend" aria-label="Chart legend">
+                  <span><i className="legend-demand" /> Expected demand</span>
+                  <span><i className="legend-staff" /> Recommended staffing</span>
+                </div>
+              </div>
+              <ShapeChart scenario={scenario} />
+              <p className="chart-summary">
+                Demand is strongest around {peak.time}; recommended cover reaches {peak.recommendedStaff} employees.
+              </p>
+            </article>
+
+            <aside className="day-panel">
+              <div className="day-panel-heading">
+                <span>Plan by day</span>
+                <strong>July 2026</strong>
+              </div>
+              <div className="calendar-mini" aria-hidden="true">
+                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                  <span key={day}>{day}</span>
+                ))}
+                {Array.from({ length: 14 }, (_, index) => (
+                  <button
+                    type="button"
+                    key={index}
+                    className={index === 8 ? "selected-day" : ""}
+                    tabIndex={-1}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+              </div>
+              <div className="day-context">
+                <span>{selectedDay} day</span>
+                <p>Use context before deciding the final rota.</p>
+              </div>
+            </aside>
+          </div>
+
+          <section className="rota-guidance-panel">
+            <div>
+              <p className="eyebrow">Rota guidance</p>
+              <h3>Keep cover practical, not jumpy.</h3>
+            </div>
+            <p>
+              Schedule strongest cover around {strongest.start}-{strongest.end}. 
+              Quieter cover can sit closer to minimum around {quietest.start}-{quietest.end}.
+            </p>
+          </section>
         </article>
 
-        <div className="plan-grid">
+        <div className="operations-grid">
           <article className="info-panel">
             <p className="eyebrow">Practical staffing plan</p>
-            <h2>Smoothed cover blocks</h2>
+            <h2>Coverage blocks</h2>
             <p>
-              ScheduleLoop avoids one-hour jumps and turns the curve into blocks a
-              manager could use before assigning named staff.
+              These are staffing requirements, not named employee assignments.
             </p>
-            <ul className="block-list">
+            <div className="staffing-timeline">
               {scenario.blocks.map((block) => (
-                <li key={`${block.start}-${block.end}-${block.staff}`}>
-                  {blockLabel(block)}
-                </li>
+                <div key={`${block.start}-${block.end}-${block.staff}`}>
+                  <span>{block.start}-{block.end}</span>
+                  <strong>{block.staff}</strong>
+                </div>
               ))}
-            </ul>
+            </div>
           </article>
 
           <article className="info-panel">
             <p className="eyebrow">Role planning</p>
-            <h2>View cover by role</h2>
+            <h2>Role requirements</h2>
             <div className="role-tabs" role="tablist" aria-label="Role requirements">
               {scenario.roles.map((role) => (
                 <button
@@ -120,7 +226,26 @@ export function TryExperience() {
                 </button>
               ))}
             </div>
-            <ul className="block-list compact-blocks">
+            <div className="role-coverage-grid">
+              {scenario.roles.map((role) => (
+                <div
+                  key={role.key}
+                  className="role-coverage-card"
+                  style={{ "--role-color": role.color } as React.CSSProperties}
+                >
+                  <div>
+                    <span>{role.label}</span>
+                    <strong>{Math.max(...role.values)} peak</strong>
+                  </div>
+                  <div className="role-mini-bars" aria-hidden="true">
+                    {role.values.map((value, index) => (
+                      <i key={`${role.key}-${index}`} style={{ height: `${Math.max(16, value * 18)}px` }} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <ul className="block-list compact-blocks role-block-summary">
               {blocks.map((block) => (
                 <li key={`${selectedRole.key}-${block.start}-${block.end}-${block.staff}`}>
                   {block.start}-{block.end}: {block.staff}
@@ -173,12 +298,12 @@ export function TryExperience() {
         </article>
 
         <article className="callout-panel">
-          <h2>What this shows</h2>
+          <h2>How the planner thinks</h2>
           <ul className="callout-list">
-            <li><strong>Demand is not the same as staffing.</strong> The chart separates customer pressure from cover.</li>
-            <li><strong>Short spikes are smoothed.</strong> The plan favours usable staffing periods.</li>
-            <li><strong>Roles can move differently.</strong> Each business has role-specific requirements.</li>
-            <li><strong>Managers adjust unusual days.</strong> Day type controls show how context changes the plan.</li>
+            <li><strong>Demand first.</strong> The curve shows the expected pressure across the working day.</li>
+            <li><strong>Coverage second.</strong> Staffing is smoothed into blocks that can become real shifts.</li>
+            <li><strong>Roles separately.</strong> Each role can peak at a different time.</li>
+            <li><strong>Manager context.</strong> Quiet, busy and event days adjust the forecast before rota work starts.</li>
           </ul>
         </article>
       </aside>
@@ -298,4 +423,12 @@ function peakPoint(scenario: DemoScenario) {
   return scenario.points.reduce((best, point) =>
     point.expectedDemand > best.expectedDemand ? point : best,
   );
+}
+
+function strongestBlock(scenario: DemoScenario) {
+  return scenario.blocks.reduce((best, block) => (block.staff > best.staff ? block : best));
+}
+
+function quietestBlock(scenario: DemoScenario) {
+  return scenario.blocks.reduce((best, block) => (block.staff < best.staff ? block : best));
 }
