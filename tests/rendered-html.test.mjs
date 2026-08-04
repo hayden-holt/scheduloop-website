@@ -28,8 +28,8 @@ test("renders the ScheduleLoop marketing page", async () => {
   const html = await response.text();
 
   assert.match(html, /ScheduleLoop/);
-  assert.match(html, /Try ScheduleLoop/);
-  assert.match(html, /Get Started/);
+  assert.match(html, /Book a Free Walkthrough/);
+  assert.match(html, /Try the Demo/);
   assert.match(html, /href="\/sign-in"/);
   assert.match(html, /href="\/try"/);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/);

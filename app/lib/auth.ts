@@ -233,7 +233,7 @@ async function firebaseJson<T>(path: string, body: Record<string, unknown>) {
 function ensureFirebaseReady() {
   if (!hasFirebaseConfig()) {
     throw new AuthError(
-      "Firebase Authentication is not configured yet. Add the public Firebase web API key, then try again.",
+      "Sign in is currently available to invited early-access businesses. Book a walkthrough if you need access.",
       "auth/missing-config",
     );
   }

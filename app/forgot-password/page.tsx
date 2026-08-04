@@ -5,6 +5,9 @@ import { ForgotPasswordForm } from "./ForgotPasswordForm";
 export const metadata: Metadata = {
   title: "Reset Password | ScheduleLoop",
   description: "Send a ScheduleLoop password reset link.",
+  alternates: {
+    canonical: "/forgot-password",
+  },
 };
 
 export default function ForgotPasswordPage() {

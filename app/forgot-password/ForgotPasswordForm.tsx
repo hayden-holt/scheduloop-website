@@ -45,7 +45,8 @@ export function ForgotPasswordForm() {
     <form className="auth-form" onSubmit={handleSubmit} noValidate>
       {!hasFirebaseConfig() && (
         <p className="form-note" role="status">
-          Add Firebase Authentication settings before reset emails can be sent.
+          Password reset is available to invited early-access businesses once their
+          account access has been confirmed.
         </p>
       )}
 

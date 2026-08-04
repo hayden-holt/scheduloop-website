@@ -25,7 +25,7 @@ export function AuthShell({ eyebrow, title, copy, children }: AuthShellProps) {
                 <span>Planner view</span>
                 <strong>Today&apos;s staffing plan</strong>
               </div>
-              <em>High confidence</em>
+              <em>Example data</em>
             </div>
             <div className="auth-recommendation">
               <span>Key recommendation</span>

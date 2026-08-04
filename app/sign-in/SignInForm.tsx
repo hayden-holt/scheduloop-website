@@ -63,8 +63,8 @@ export function SignInForm() {
     <form className="auth-form" onSubmit={handleSubmit} noValidate>
       {!hasFirebaseConfig() && (
         <p className="form-note" role="status">
-          Firebase Authentication needs your public web API key before real
-          sign-in can complete.
+          Sign in is currently available to invited early-access businesses.
+          Book a walkthrough if you need access.
         </p>
       )}
 
@@ -126,7 +126,7 @@ export function SignInForm() {
       </button>
 
       <p className="form-switch">
-        New to ScheduleLoop? <a href="/sign-up">Create an account</a>
+        New to ScheduleLoop? <a href="/book-a-walkthrough">Book a walkthrough</a>
       </p>
       <Link className="text-link" href="/">
         Back to main website

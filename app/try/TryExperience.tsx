@@ -31,7 +31,7 @@ export function TryExperience() {
   const quietest = quietestBlock(scenario);
   const selectedBusiness = businessOptions.find((option) => option.key === business)?.label ?? "Cafe";
   const selectedDay = dayTypeOptions.find((option) => option.key === dayType)?.label ?? "Normal";
-  const confidence = dayType === "event" ? 68 : dayType === "busy" ? 76 : dayType === "quiet" ? 72 : 82;
+  const confidence = dayType === "event" ? "Moderate" : "High";
 
   return (
     <section className="demo-grid demo-workspace" aria-label="ScheduleLoop demonstration">
@@ -111,7 +111,7 @@ export function TryExperience() {
               </div>
               <div>
                 <span>Confidence</span>
-                <strong>{confidence}/100</strong>
+                <strong>{confidence}</strong>
               </div>
             </aside>
           </div>
@@ -131,7 +131,7 @@ export function TryExperience() {
             </div>
             <div>
               <span>Forecast based on</span>
-              <strong>Demo data</strong>
+              <strong>Example data</strong>
             </div>
           </div>
 

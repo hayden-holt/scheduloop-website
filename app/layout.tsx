@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { siteConfig } from "./lib/siteConfig";
 import "./globals.css";
 
 const siteDescription =
-  "Daily staffing guidance shaped around demand, roles and local business context.";
+  "Know how many staff you need before building the rota. ScheduleLoop turns expected demand into practical staffing guidance for shift-based businesses.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -13,15 +14,23 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase,
-    title: "ScheduleLoop",
+    title: {
+      default: "ScheduleLoop | Demand Forecasting and Staffing Planning",
+      template: "%s",
+    },
     description: siteDescription,
+    alternates: {
+      canonical: siteConfig.url,
+    },
     icons: {
       icon: "/favicon.svg",
       shortcut: "/favicon.svg",
     },
     openGraph: {
-      title: "ScheduleLoop",
+      title: "ScheduleLoop | Demand Forecasting and Staffing Planning",
       description: siteDescription,
+      url: siteConfig.url,
+      siteName: "ScheduleLoop",
       images: [
         {
           url: "/og.png",
