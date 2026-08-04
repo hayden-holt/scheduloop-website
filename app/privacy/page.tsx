@@ -22,8 +22,8 @@ export default function PrivacyPage() {
 
         <h2>Who we are</h2>
         <p>
-          ScheduleLoop is operated by {siteConfig.legalBusinessName}. Contact:
-          {" "}{siteConfig.contactEmail}.
+          ScheduleLoop is an early-stage product operated by {siteConfig.founderNames}.
+          Contact: {siteConfig.contactEmail}.
         </p>
 
         <h2>Information we collect</h2>
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
         <p>
           Early-access information may be retained while ScheduleLoop is being configured,
           tested or supported. Users can request access, correction or deletion through the
-          contact email above once it has been confirmed.
+          contact email above.
         </p>
 
         <h2>Cookies and analytics</h2>

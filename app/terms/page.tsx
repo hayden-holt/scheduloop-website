@@ -22,8 +22,8 @@ export default function TermsPage() {
 
         <h2>Who provides ScheduleLoop</h2>
         <p>
-          ScheduleLoop is provided by {siteConfig.legalBusinessName}. Contact:
-          {" "}{siteConfig.contactEmail}.
+          ScheduleLoop is an early-stage product operated by {siteConfig.founderNames}.
+          Contact: {siteConfig.contactEmail}.
         </p>
 
         <h2>What ScheduleLoop does</h2>
@@ -67,8 +67,7 @@ export default function TermsPage() {
 
         <h2>Contact</h2>
         <p>
-          Questions about these terms should be sent to {siteConfig.contactEmail} once
-          the public contact email has been confirmed.
+          Questions about these terms should be sent to {siteConfig.contactEmail}.
         </p>
       </section>
       <SiteFooter />
