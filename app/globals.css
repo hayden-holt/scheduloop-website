@@ -345,6 +345,13 @@ textarea:focus-visible {
   font-weight: 780;
 }
 
+.hero-flow-line {
+  margin: 16px 0 0;
+  color: var(--blue-dark);
+  font-size: 0.92rem;
+  font-weight: 880;
+}
+
 .metric-band {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -624,6 +631,71 @@ textarea:focus-visible {
 
 .product-story:nth-child(even) .section-copy {
   order: 2;
+}
+
+.product-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.product-flow span {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 860;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.product-flow i {
+  color: var(--blue-dark);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.rota-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+
+.rota-product-shot {
+  aspect-ratio: 16 / 10;
+}
+
+.connected-benefits {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.connected-benefits li {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 780;
+  line-height: 1.45;
+  padding: 0 0 10px 24px;
+}
+
+.connected-benefits li::before {
+  content: "";
+  position: absolute;
+  top: 0.42em;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  background: var(--green);
 }
 
 .demo-teaser {
@@ -999,12 +1071,15 @@ textarea:focus-visible {
 }
 
 .demo-command-bar {
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(230px, 0.55fr);
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
   align-items: end;
 }
 
 .demo-scenario-status {
   display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
   gap: 4px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -1452,6 +1527,63 @@ textarea:focus-visible {
   display: grid;
   grid-template-columns: 0.86fr 1.14fr;
   gap: 16px;
+}
+
+.demo-rota-next {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr);
+  gap: 20px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 10px 28px rgba(47, 86, 136, 0.08);
+  padding: 22px;
+}
+
+.demo-rota-next h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.6rem, 2.7vw, 2.4rem);
+  line-height: 1.08;
+}
+
+.demo-rota-next p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.demo-readonly-label {
+  display: block;
+  border-left: 3px solid var(--blue);
+  background: #f7fbff;
+  color: #405c83;
+  font-size: 0.82rem;
+  font-weight: 820;
+  line-height: 1.5;
+  padding: 10px 12px;
+}
+
+.demo-rota-next figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.demo-rota-next img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.demo-rota-next figcaption {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 820;
+  padding: 9px 11px;
 }
 
 .staffing-timeline {
@@ -2280,6 +2412,7 @@ textarea::placeholder {
   .try-product-preview,
   .auth-grid,
   .product-story,
+  .rota-showcase,
   .trust-grid,
   .walkthrough-hero,
   .walkthrough-panel {
@@ -2295,8 +2428,9 @@ textarea::placeholder {
   .demo-command-bar,
   .planner-summary-grid,
   .planner-content-grid,
-  .operations-grid,
-  .rota-guidance-panel,
+    .operations-grid,
+    .demo-rota-next,
+    .rota-guidance-panel,
   .dashboard-grid,
   .settings-grid {
     grid-template-columns: 1fr;
@@ -2321,6 +2455,10 @@ textarea::placeholder {
 
   .planner-preview-header {
     flex-direction: column;
+  }
+
+  .demo-scenario-status {
+    grid-template-columns: 1fr;
   }
 
   .auth-product {
@@ -2463,6 +2601,15 @@ textarea::placeholder {
   .feedback-grid,
   .audience-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .product-flow i {
+    transform: rotate(90deg);
+    text-align: center;
   }
 
   .panel-heading,

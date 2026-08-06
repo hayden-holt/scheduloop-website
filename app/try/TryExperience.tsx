@@ -101,7 +101,7 @@ export function TryExperience() {
               <h3>Plan for {scenario.staffedHours.toFixed(0)} staff hours today.</h3>
               <p>
                 Strongest cover is expected around {strongest.start}-{strongest.end}.
-                Use this as guidance before creating named shifts.
+                Use this requirement as the basis for employee shifts in the rota.
               </p>
             </section>
             <aside className="planner-side-stats">
@@ -266,6 +266,29 @@ export function TryExperience() {
             </ul>
           </article>
         </div>
+
+        <section className="demo-rota-next" aria-labelledby="demo-rota-title">
+          <div>
+            <p className="eyebrow">Next in ScheduleLoop</p>
+            <h2 id="demo-rota-title">Build the rota around the plan.</h2>
+            <p>
+              The staffing recommendation defines the cover the business needs.
+              Managers can then assign employees, set shift times and compare scheduled
+              cover with the recommendation in the real ScheduleLoop application.
+            </p>
+            <span className="demo-readonly-label">
+              Product screenshot only. This public demonstration does not save rota changes.
+            </span>
+          </div>
+          <figure>
+            <img
+              src="/screens/rota-week.jpg"
+              alt="ScheduleLoop weekly rota with employee shifts and forecast coverage comparison"
+              loading="lazy"
+            />
+            <figcaption>Saved rota workspace in the ScheduleLoop application</figcaption>
+          </figure>
+        </section>
       </div>
 
       <aside className="demo-sidebar" aria-label="Demo explanation and labour cost">
@@ -315,7 +338,8 @@ export function TryExperience() {
             <li><strong>Demand first.</strong> The curve shows the expected pressure across the working day.</li>
             <li><strong>Coverage second.</strong> Staffing is smoothed into blocks that can become real shifts.</li>
             <li><strong>Roles separately.</strong> Each role can peak at a different time.</li>
-            <li><strong>Manager context.</strong> Quiet, busy and event days adjust the forecast before rota work starts.</li>
+            <li><strong>Manager context.</strong> Quiet, busy and event days adjust the forecast before shifts are arranged.</li>
+            <li><strong>Manager-led rota.</strong> ScheduleLoop shows the target; managers choose the employees and shift times.</li>
           </ul>
         </article>
       </aside>

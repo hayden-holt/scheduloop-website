@@ -4,7 +4,7 @@ import { siteConfig } from "./lib/siteConfig";
 import "./globals.css";
 
 const siteDescription =
-  "Know how many staff you need before building the rota. ScheduleLoop turns expected demand into practical staffing guidance for shift-based businesses.";
+  "Understand expected demand, plan the staffing coverage you need and build the employee rota around it with ScheduleLoop.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase,
     title: {
-      default: "ScheduleLoop | Demand Forecasting and Staffing Planning",
+      default: "ScheduleLoop | Demand Forecasting, Staffing Planning and Rotas",
       template: "%s",
     },
     description: siteDescription,
@@ -27,16 +27,16 @@ export async function generateMetadata(): Promise<Metadata> {
       shortcut: "/favicon.svg",
     },
     openGraph: {
-      title: "ScheduleLoop | Demand Forecasting and Staffing Planning",
+      title: "ScheduleLoop | Demand Forecasting, Staffing Planning and Rotas",
       description: siteDescription,
       url: siteConfig.url,
       siteName: "ScheduleLoop",
       images: [
         {
-          url: "/og.png",
+          url: "/og-rota.png",
           width: 1200,
           height: 630,
-          alt: "ScheduleLoop demand-shaped staffing plans",
+          alt: "ScheduleLoop demand forecasting, staffing planning and rota workflow",
         },
       ],
     },
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: "ScheduleLoop",
       description: siteDescription,
-      images: ["/og.png"],
+      images: ["/og-rota.png"],
     },
   };
 }

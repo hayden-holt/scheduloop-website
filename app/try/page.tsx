@@ -7,7 +7,7 @@ import { TryExperience } from "./TryExperience";
 export const metadata: Metadata = {
   title: "Try the Demo | ScheduleLoop",
   description:
-    "Try a ScheduleLoop demonstration using example business data and see how demand becomes staffing guidance.",
+    "Try a ScheduleLoop demonstration and see how expected demand becomes staffing guidance and a rota plan.",
   alternates: {
     canonical: "/try",
   },
@@ -23,7 +23,8 @@ export default function TryPage() {
           <h1 id="try-title">Try ScheduleLoop with example business data</h1>
           <p>
             Select a business type, adjust the kind of day, change an example hourly
-            rate and see how expected demand becomes practical staffing guidance.
+            rate and see how expected demand becomes practical staffing guidance before
+            moving into the rota.
           </p>
         </div>
         <p className="demo-note">
@@ -44,8 +45,8 @@ export default function TryPage() {
         </article>
         <article>
           <span>3</span>
-          <h3>Managers adjust context</h3>
-          <p>Unusual days, events and business knowledge should shape the final guidance.</p>
+          <h3>Build the rota</h3>
+          <p>Use the staffing requirement as the basis for employee shifts in the real ScheduleLoop rota workspace.</p>
         </article>
       </section>
       <section className="cta-band" aria-labelledby="try-cta-title">
@@ -53,8 +54,8 @@ export default function TryPage() {
           <p className="eyebrow">Guided early access</p>
           <h2 id="try-cta-title">Want to see this using your own business setup?</h2>
           <p>
-            Book a walkthrough and we&apos;ll show how your opening hours, roles and
-            demand patterns could become a practical staffing plan.
+            Request a walkthrough and we&apos;ll show how your opening hours, roles and
+            demand patterns can become practical cover and a working rota.
           </p>
         </div>
         <div className="cta-actions">
