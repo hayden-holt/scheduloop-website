@@ -64,7 +64,7 @@ export function SignInForm() {
       {!hasFirebaseConfig() && (
         <p className="form-note" role="status">
           Sign in is currently available to invited early-access businesses.
-          Book a walkthrough if you need access.
+          Request a walkthrough if you need access.
         </p>
       )}
 
@@ -126,7 +126,7 @@ export function SignInForm() {
       </button>
 
       <p className="form-switch">
-        New to ScheduleLoop? <a href="/book-a-walkthrough">Book a walkthrough</a>
+        New to ScheduleLoop? <a href="/book-a-walkthrough">Request a walkthrough</a>
       </p>
       <Link className="text-link" href="/">
         Back to main website

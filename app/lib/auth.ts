@@ -233,7 +233,7 @@ async function firebaseJson<T>(path: string, body: Record<string, unknown>) {
 function ensureFirebaseReady() {
   if (!hasFirebaseConfig()) {
     throw new AuthError(
-      "Sign in is currently available to invited early-access businesses. Book a walkthrough if you need access.",
+      "Sign in is currently available to invited early-access businesses. Request a walkthrough if you need access.",
       "auth/missing-config",
     );
   }

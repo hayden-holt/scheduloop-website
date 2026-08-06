@@ -15,7 +15,7 @@ export default function SignUpPage() {
     <AuthShell
       eyebrow="Guided early access"
       title="ScheduleLoop is currently available through guided early access."
-      copy="Book a walkthrough and we will help configure ScheduleLoop around your opening hours, roles and demand patterns."
+      copy="Request a walkthrough and we will help configure ScheduleLoop around your opening hours, roles, demand patterns and rota."
     >
       <div className="early-access-card">
         <h2>What happens next</h2>

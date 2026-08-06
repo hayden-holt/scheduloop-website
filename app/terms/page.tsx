@@ -28,8 +28,9 @@ export default function TermsPage() {
 
         <h2>What ScheduleLoop does</h2>
         <p>
-          ScheduleLoop provides staffing guidance. It helps managers estimate how many
-          staff may be needed across a day before building the rota.
+          ScheduleLoop provides demand-led staffing guidance and a rota workspace. It
+          helps managers estimate the cover a day may need, then manually assign
+          employees and create shifts around that plan.
         </p>
 
         <h2>Manager responsibility</h2>
@@ -40,9 +41,10 @@ export default function TermsPage() {
 
         <h2>Current product boundaries</h2>
         <p>
-          ScheduleLoop does not currently process payroll, publish rotas automatically or
-          assign named employees unless that feature is expressly provided inside the
-          product.
+          ScheduleLoop does not generate rotas or choose employee assignments
+          automatically. It does not currently provide payroll processing, time tracking,
+          employee availability, holiday management, shift swapping, staff notifications
+          or legal compliance guarantees.
         </p>
 
         <h2>Uploaded information</h2>

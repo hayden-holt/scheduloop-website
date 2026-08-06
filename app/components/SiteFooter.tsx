@@ -9,8 +9,8 @@ export function SiteFooter() {
           <img src="/brand-logo.png" alt="ScheduleLoop" width={1087} height={245} />
         </Link>
         <p>
-          Know how many staff you need before building the rota. ScheduleLoop turns
-          expected demand into practical staffing guidance for shift-based businesses.
+          Know how much cover the day needs, then build the rota around it. ScheduleLoop
+          connects expected demand, staffing guidance and employee shifts.
         </p>
         <div className="footer-meta">
           <p>Founders: {siteConfig.founderNames}</p>

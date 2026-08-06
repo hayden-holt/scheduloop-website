@@ -7,14 +7,14 @@ import { WalkthroughForm } from "./WalkthroughForm";
 export const metadata: Metadata = {
   title: "Request a Free Walkthrough | ScheduleLoop",
   description:
-    "Request a short ScheduleLoop walkthrough showing how expected demand can become a practical staffing plan.",
+    "Request a short ScheduleLoop walkthrough showing how expected demand becomes a staffing plan and working rota.",
   alternates: {
     canonical: "/book-a-walkthrough",
   },
   openGraph: {
     title: "Request a Free Walkthrough | ScheduleLoop",
     description:
-      "Tell us about your business and see how ScheduleLoop could support staffing decisions before the rota is built.",
+      "See how ScheduleLoop can connect expected demand, staffing coverage and rota creation for your business.",
     url: `${siteConfig.url}/book-a-walkthrough`,
   },
 };
@@ -29,7 +29,8 @@ export default function BookWalkthroughPage() {
           <h1 id="walkthrough-title">See how ScheduleLoop could work for your business</h1>
           <p>
             Tell us a little about your business and we&apos;ll arrange a short walkthrough
-            showing how expected demand can become a practical staffing plan.
+            showing how expected demand can become a practical staffing plan and a
+            working employee rota.
           </p>
           <div className="walkthrough-actions" aria-label="Alternative actions">
             <a className="button button-secondary" href={siteConfig.routes.demo}>
@@ -47,6 +48,7 @@ export default function BookWalkthroughPage() {
             <li>Roles you need covered during the day</li>
             <li>How unusual days should be adjusted</li>
             <li>What data, if any, you already have</li>
+            <li>How planned cover becomes employee shifts</li>
           </ul>
         </aside>
       </section>
@@ -57,7 +59,7 @@ export default function BookWalkthroughPage() {
           <h2 id="request-title">{primaryCta}</h2>
           <p>
             Keep it brief. The walkthrough is about understanding whether ScheduleLoop can
-            help with the staffing decisions you are already making.
+            help you plan cover and build the rota around the day your business expects.
           </p>
         </div>
         <WalkthroughForm />

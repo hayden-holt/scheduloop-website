@@ -4,36 +4,36 @@ import { SiteHeader } from "./components/SiteHeader";
 import { primaryCta, secondaryCta, siteConfig } from "./lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: "ScheduleLoop | Demand Forecasting and Staffing Planning",
+  title: "ScheduleLoop | Demand Forecasting, Staffing Planning and Rotas",
   description:
-    "Know how many staff you need before building the rota. ScheduleLoop turns expected demand into practical staffing guidance for shift-based businesses.",
+    "Understand expected demand, plan the staffing coverage you need and build the employee rota around it with ScheduleLoop.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "ScheduleLoop | Demand Forecasting and Staffing Planning",
+    title: "ScheduleLoop | Demand Forecasting, Staffing Planning and Rotas",
     description:
-      "Turn expected demand into practical staffing guidance before building the rota.",
+      "Understand expected demand, plan the right cover and build the staff rota in one connected workflow.",
     url: siteConfig.url,
   },
 };
 
 const workingSteps = [
   {
-    title: "Set the business baseline",
-    body: "Start with opening hours, core roles and the level of cover the business normally needs.",
+    title: "Configure your business",
+    body: "Set opening hours, roles, staffing assumptions and the details that shape a normal working day.",
   },
   {
-    title: "Review the shape of the day",
-    body: "See where demand builds, when the busiest window is likely to hit and when cover can ease.",
+    title: "Understand expected demand",
+    body: "Use business data and manager input to see when the day is likely to build, peak and ease.",
   },
   {
-    title: "Turn demand into cover",
-    body: "Translate the curve into steady staffing blocks that are practical enough to become shifts.",
+    title: "Plan practical staff cover",
+    body: "Turn demand into stable, role-based staffing requirements that can become realistic shifts.",
   },
   {
-    title: "Adjust unusual days",
-    body: "Add the local context managers know best, such as events, bookings, promotions or quieter trade.",
+    title: "Build the rota",
+    body: "Assign employees and create the working schedule around the cover you have planned.",
   },
 ];
 
@@ -41,7 +41,7 @@ const productStories = [
   {
     id: "shape",
     eyebrow: "Understand the shape of the day",
-    title: "Spot the busy window before the rota is written.",
+    title: "See when demand is expected to rise, hold and fall away.",
     body: "ScheduleLoop gives managers a clear view of when demand is expected to rise, peak and settle, so cover can be planned around the real pressure points of the day.",
     image: "/screens/shape-of-day.png",
     alt: "ScheduleLoop shape of the day chart showing demand and staffing need",
@@ -59,8 +59,8 @@ const productStories = [
   {
     id: "roles",
     eyebrow: "Plan different roles",
-    title: "Plan role-by-role cover before assigning named staff.",
-    body: "Front of house, kitchen, reception, checkout and floor teams do not always peak at the same time. ScheduleLoop keeps those role requirements visible from the start.",
+    title: "Keep role requirements clear as you assign shifts.",
+    body: "Front of house, kitchen, reception, checkout and floor teams do not always peak at the same time. ScheduleLoop keeps each requirement visible from planning through to the rota.",
     image: "/screens/setup-view.png",
     alt: "ScheduleLoop role setup showing peak cover and minimum cover",
     className: "focus-roles",
@@ -70,44 +70,61 @@ const productStories = [
 const businessTypes = [
   {
     title: "Cafes and coffee shops",
-    body: "Plan around morning rushes, lunch peaks and quieter afternoon cover.",
+    body: "Plan around morning rushes and lunch peaks, then schedule barista, kitchen and front-of-house cover.",
   },
   {
     title: "Restaurants, bars and pubs",
-    body: "Prepare for service peaks, late finishes and different front-of-house or kitchen needs.",
+    body: "Turn service peaks and late finishes into practical bar, service and kitchen shifts.",
   },
   {
     title: "Gyms and leisure venues",
-    body: "Match reception, floor and class cover to member traffic across the day.",
+    body: "Match reception, floor and class cover to member traffic, then organise the people providing it.",
   },
   {
     title: "Retail stores",
-    body: "Balance checkout, floor and stock cover around trading patterns and promotions.",
+    body: "Plan checkout, sales-floor and stock cover around trading patterns and promotions.",
   },
   {
     title: "Other shift-based teams",
-    body: "Use the same approach wherever demand changes by hour, role or day type.",
+    body: "Connect expected activity to employee shifts wherever demand changes by hour, role or day type.",
   },
 ];
 
 const earlyAccessBenefits = [
-  "Guided setup",
+  "Guided planning and rota setup",
   "Direct support",
-  "Help configuring roles and opening hours",
+  "Help configuring roles, opening hours and employees",
   "Influence what gets built next",
   "Early access to new functionality",
+];
+
+const connectedBenefits = [
+  "Build the rota against a clear staffing target",
+  "Keep forecast, role cover and employee shifts in one workflow",
+  "Compare scheduled cover with the recommendation by time and role",
+  "Adjust shifts while keeping expected demand visible",
 ];
 
 const faqs = [
   {
     question: "What is ScheduleLoop?",
     answer:
-      "ScheduleLoop is a staffing planning tool for shift-based businesses. It helps managers understand how many people are likely to be needed across the day before they build the rota, using expected demand, roles, opening hours and manager context.",
+      "ScheduleLoop is a demand-led staffing and rota tool for shift-based businesses. It helps managers understand how much cover the day is likely to need, turn that into role-based staffing guidance and build the employee rota around the plan.",
   },
   {
     question: "Is ScheduleLoop a rota builder?",
     answer:
-      "ScheduleLoop sits before the rota. Its current job is to calculate practical staffing requirements, not automatically assign named employees. That makes it useful as a planning layer: managers can decide the level of cover first, then build the rota with more confidence.",
+      "Yes. ScheduleLoop includes a straightforward rota area where managers can add employees, create and manage shifts, move between weeks and review the rota as a draft or published schedule. Its main difference is that the rota is built after first understanding the staffing coverage the day is expected to require.",
+  },
+  {
+    question: "How does the rota connect to the forecast?",
+    answer:
+      "The forecast shows when demand is likely to rise or fall. ScheduleLoop turns that into recommended staffing coverage by time and role, then compares the shifts on the rota with that recommendation so managers can see where cover is matched, under, over or assigned to the wrong role.",
+  },
+  {
+    question: "Does ScheduleLoop automatically create the rota?",
+    answer:
+      "No. ScheduleLoop provides the staffing guidance and rota workspace, while the manager remains in control of employee assignments, shift times, breaks and the final rota. It can copy suitable shifts from the previous week, but it does not generate or assign the whole rota automatically.",
   },
   {
     question: "What kinds of businesses can use it?",
@@ -142,12 +159,17 @@ const faqs = [
   {
     question: "Will it show labour cost?",
     answer:
-      "ScheduleLoop can estimate staff hours and labour cost from an example hourly rate, helping managers understand the staffing commitment before the rota is finalised. It does not process payroll or replace payroll software.",
+      "Yes. ScheduleLoop can estimate the cost of the recommended staffing plan and the scheduled rota where wage information is available. These figures support planning; ScheduleLoop does not process payroll or replace payroll software.",
   },
   {
-    question: "Will it assign individual employees?",
+    question: "Does ScheduleLoop assign individual employees?",
     answer:
-      "No. ScheduleLoop currently recommends staffing levels and role requirements rather than choosing named employees. Managers still decide who works each shift based on availability, skills and business judgement.",
+      "Managers can manually add employees and assign them while building the rota. ScheduleLoop does not currently choose employees or generate the entire rota automatically, so availability, skills and final shift decisions remain with the manager.",
+  },
+  {
+    question: "Does ScheduleLoop replace existing rota software?",
+    answer:
+      "For businesses that need straightforward employee and shift planning, ScheduleLoop can provide the core forecasting-to-rota workflow in one place. Businesses that rely on advanced HR, payroll, availability, holiday or shift-swapping features may continue using ScheduleLoop alongside their existing systems.",
   },
   {
     question: "How accurate are the recommendations?",
@@ -162,7 +184,7 @@ const faqs = [
   {
     question: "How do I get access?",
     answer:
-      "Book a free walkthrough. ScheduleLoop is currently offered through guided early access, so we can understand your business, help configure the basics and show how the product could fit into your staffing process.",
+      "Request a free walkthrough. ScheduleLoop is currently offered through guided early access, so we can understand your business, help configure the basics and show how forecasting, staffing guidance and rota creation could fit your operation.",
   },
 ];
 
@@ -180,9 +202,12 @@ export default function Home() {
           <p className="eyebrow">Demand-led staffing guidance</p>
           <h1 id="hero-title">Know how many staff you need before you build the rota.</h1>
           <p className="hero-copy">
-            ScheduleLoop turns expected demand into clear, role-by-role staffing
-            guidance, so managers can plan busy periods, protect quieter cover and
-            build the rota from a stronger starting point.
+            ScheduleLoop turns expected demand into practical, role-by-role staffing
+            guidance, then helps you build the rota around the cover your business
+            actually needs.
+          </p>
+          <p className="hero-flow-line">
+            Forecast demand, plan coverage and build the rota in one connected workflow.
           </p>
           <div className="hero-actions" aria-label="Primary actions">
             <a className="button button-primary" href={siteConfig.routes.walkthrough}>
@@ -202,7 +227,7 @@ export default function Home() {
         <div>
           <span className="metric-label">Example business forecast using demonstration data</span>
           <strong>36</strong>
-          <span>staff hours estimated before the rota is built</span>
+          <span>recommended staff hours to use as the rota target</span>
         </div>
         <div>
           <span className="metric-label">Busiest period</span>
@@ -226,10 +251,16 @@ export default function Home() {
             role and flexible enough for the manager&apos;s judgement.
           </p>
           <p>
-            ScheduleLoop sits before the rota and answers the operational question
-            managers usually have to solve manually: how much cover should the day
-            actually have?
+            Most rota tools begin with employee scheduling. ScheduleLoop begins with
+            the staffing requirement, then helps managers build the rota around it.
           </p>
+          <div className="product-flow" aria-label="ScheduleLoop planning workflow">
+            <span>Expected demand</span>
+            <i aria-hidden="true">&rarr;</i>
+            <span>Staffing requirement</span>
+            <i aria-hidden="true">&rarr;</i>
+            <span>Staff rota</span>
+          </div>
         </div>
         <figure className="focused-shot focus-plan">
           <img
@@ -243,7 +274,7 @@ export default function Home() {
       <section className="section" id="how-it-works" aria-labelledby="works-title">
         <div className="section-heading">
           <p className="eyebrow">How It Works</p>
-          <h2 id="works-title">A clearer way to decide daily cover.</h2>
+          <h2 id="works-title">From expected demand to a working rota.</h2>
         </div>
         <div className="feature-grid feature-grid-four">
           {workingSteps.map((step, index) => (
@@ -272,6 +303,32 @@ export default function Home() {
         ))}
       </section>
 
+      <section id="rota-planning" className="section rota-showcase" aria-labelledby="rota-showcase-title">
+        <div className="section-copy">
+          <p className="eyebrow">Rota Planning</p>
+          <h2 id="rota-showcase-title">Turn the staffing plan into a working rota.</h2>
+          <p>
+            Once you understand the cover the day requires, ScheduleLoop gives you a
+            clear place to schedule employees and build the rota around that plan.
+            Create and adjust shifts while keeping the expected staffing requirement
+            in view.
+          </p>
+          <ul className="connected-benefits">
+            {connectedBenefits.map((benefit) => (
+              <li key={benefit}>{benefit}</li>
+            ))}
+          </ul>
+        </div>
+        <figure className="focused-shot rota-product-shot">
+          <img
+            src="/screens/rota-week.jpg"
+            alt="ScheduleLoop weekly rota showing employees, shifts, scheduled hours and forecast coverage checks"
+            loading="lazy"
+          />
+          <figcaption>Real ScheduleLoop rota workspace</figcaption>
+        </figure>
+      </section>
+
       <section className="section two-column demo-teaser" aria-labelledby="demo-title">
         <div className="section-copy">
           <p className="eyebrow">Demo</p>
@@ -279,7 +336,8 @@ export default function Home() {
           <p>
             The demo lets you switch business type, day type and hourly wage using
             stable example data. It shows how ScheduleLoop turns a demand pattern into
-            staffing blocks, role requirements and labour-cost estimates.
+            staffing blocks, role requirements and labour-cost estimates, then shows
+            how that plan continues into the rota workspace.
           </p>
           <div className="inline-actions">
             <a className="button button-primary" href={siteConfig.routes.demo}>
@@ -293,7 +351,7 @@ export default function Home() {
         <div className="demo-card-summary">
           <span>Example demo includes</span>
           <strong>Cafe, restaurant, gym and retail patterns</strong>
-          <p>Quiet, normal, busy and event days with role-specific cover, staffing blocks and labour-cost estimates.</p>
+          <p>Quiet, normal, busy and event days with role-specific cover, labour-cost estimates and a read-only view of the next rota step.</p>
         </div>
       </section>
 
@@ -323,11 +381,11 @@ export default function Home() {
         </figure>
         <div className="section-copy">
           <p className="eyebrow">Roles and Labour Cost</p>
-          <h2 id="labour-title">See the staffing commitment before building the rota.</h2>
+          <h2 id="labour-title">See the staffing commitment as you build the rota.</h2>
           <p>
-            ScheduleLoop shows estimated staffed hours and labour cost before the rota
-            is finalised. It helps managers understand the commitment early, while
-            leaving payroll and final staffing decisions exactly where they belong.
+            ScheduleLoop estimates the planned staff hours and labour cost, then shows
+            the scheduled hours and cost as shifts are added. Managers can review the
+            commitment without turning the product into payroll software.
           </p>
         </div>
       </section>
@@ -338,9 +396,9 @@ export default function Home() {
           <h2>Help shape ScheduleLoop</h2>
           <p>
             We are working with a small number of shift-based businesses to test
-            ScheduleLoop against real staffing decisions. Early-access businesses get
-            direct setup support, a closer feedback loop and a chance to influence the
-            product while it is still flexible.
+            staffing planning and rota creation together. Early-access businesses get
+            guided setup for roles, opening hours, demand assumptions and employees,
+            plus a direct feedback loop while the product is still flexible.
           </p>
           <ul>
             {earlyAccessBenefits.map((benefit) => (
@@ -362,8 +420,7 @@ export default function Home() {
           </p>
           <p>
             Uploaded data should only be used where the business has permission to use
-            it. Users can request access or deletion through the public contact email
-            once confirmed.
+            it. Users can request access or deletion through the public contact email.
           </p>
         </article>
       </section>
@@ -388,8 +445,9 @@ export default function Home() {
           <p className="eyebrow">Talk it through</p>
           <h2 id="cta-title">Want to see ScheduleLoop with your own business setup?</h2>
           <p>
-            Book a short walkthrough and we&apos;ll look at how your opening hours,
-            roles and demand patterns could be turned into practical staffing guidance.
+            Request a short walkthrough and we&apos;ll show how ScheduleLoop can help you
+            understand expected demand, plan the required cover and build the rota
+            around it.
           </p>
         </div>
         <div className="cta-actions">
