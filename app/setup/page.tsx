@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "Business Setup | ScheduleLoop",
 };
 
-export default function SetupPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SetupPage() {
+  const user = await requireServerAuthUser("/setup");
+
   return (
     <AppShell
+      user={user}
       active="setup"
       title="Business setup"
       description="Keep the profile, trading data and role assumptions current before each staffing plan starts."

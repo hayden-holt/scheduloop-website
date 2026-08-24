@@ -1,13 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  AuthSession,
-  onAuthSessionChange,
-  restoreAuthSession,
-  signOut,
-} from "../lib/auth";
+import { AuthSession, restoreAuthSession, signOut } from "../lib/auth";
 import { primaryCta, secondaryCta, siteConfig } from "../lib/siteConfig";
 
 type SiteHeaderProps = {
@@ -15,30 +11,27 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ compact = false }: SiteHeaderProps) {
+  const router = useRouter();
   const [session, setSession] = useState<AuthSession | null>(null);
   const [ready, setReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     let mounted = true;
-    const load = () => {
-      restoreAuthSession().then((nextSession) => {
-        if (!mounted) return;
-        setSession(nextSession);
-        setReady(true);
-      });
-    };
-    load();
-    const unsubscribe = onAuthSessionChange(load);
+    restoreAuthSession().then((nextSession) => {
+      if (!mounted) return;
+      setSession(nextSession);
+      setReady(true);
+    });
     return () => {
       mounted = false;
-      unsubscribe();
     };
   }, []);
 
-  const handleSignOut = () => {
-    signOut();
-    window.location.assign("/");
+  const handleSignOut = async () => {
+    await signOut();
+    router.replace("/");
+    router.refresh();
   };
 
   const closeMenu = () => setMenuOpen(false);

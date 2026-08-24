@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "Manager Feedback | ScheduleLoop",
 };
 
-export default function FeedbackPage() {
+export const dynamic = "force-dynamic";
+
+export default async function FeedbackPage() {
+  const user = await requireServerAuthUser("/feedback");
+
   return (
     <AppShell
+      user={user}
       active="feedback"
       title="Manager feedback"
       description="Record whether a past shift felt high, right or low so future guidance improves."

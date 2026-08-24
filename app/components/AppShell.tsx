@@ -1,13 +1,11 @@
-"use client";
-
 import Link from "next/link";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { signOut } from "../lib/auth";
+import type { ServerAuthUser } from "../lib/serverAuth";
 
 type AppShellProps = {
   title: string;
   description: string;
   active: "dashboard" | "setup" | "upload" | "plans" | "feedback" | "settings";
+  user: ServerAuthUser;
   children: React.ReactNode;
 };
 
@@ -20,15 +18,9 @@ const navItems = [
   { key: "settings", label: "Settings", href: "/settings" },
 ] as const;
 
-export function AppShell({ title, description, active, children }: AppShellProps) {
-  const handleSignOut = () => {
-    signOut();
-    window.location.assign("/");
-  };
-
+export function AppShell({ title, description, active, user, children }: AppShellProps) {
   return (
-    <ProtectedRoute>
-      <div className="product-app">
+    <div className="product-app">
         <aside className="app-sidebar">
           <Link className="brand-link" href="/" aria-label="ScheduleLoop home">
             <img
@@ -50,19 +42,21 @@ export function AppShell({ title, description, active, children }: AppShellProps
               </Link>
             ))}
           </nav>
-          <button className="button button-light sidebar-signout" type="button" onClick={handleSignOut}>
-            Sign Out
-          </button>
+          <form action="/api/auth/logout" method="post">
+            <button className="button button-light sidebar-signout" type="submit">
+              Sign Out
+            </button>
+          </form>
         </aside>
         <main className="app-main">
           <header className="app-page-header">
             <p className="eyebrow">Protected workspace</p>
             <h1>{title}</h1>
             <p>{description}</p>
+            <span className="fine-print">Signed in as {user.email}</span>
           </header>
           {children}
         </main>
-      </div>
-    </ProtectedRoute>
+    </div>
   );
 }

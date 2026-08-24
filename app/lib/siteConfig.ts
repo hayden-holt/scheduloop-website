@@ -4,7 +4,7 @@ export const siteConfig = {
   contactEmail: "hayden@hayden-holt.com",
   legalBusinessName: "ScheduleLoop",
   founderNames: "Hayden Holt and Jake Moore",
-  founderLocation: "[LOCATION]",
+  founderLocation: "United Kingdom",
   linkedInUrl: "",
   routes: {
     home: "/",

@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "CSV Upload | ScheduleLoop",
 };
 
-export default function UploadPage() {
+export const dynamic = "force-dynamic";
+
+export default async function UploadPage() {
+  const user = await requireServerAuthUser("/upload");
+
   return (
     <AppShell
+      user={user}
       active="upload"
       title="CSV upload"
       description="Upload trading history when you are ready to improve forecast confidence."

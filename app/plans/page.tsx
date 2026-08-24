@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "Saved Plans | ScheduleLoop",
 };
 
-export default function PlansPage() {
+export const dynamic = "force-dynamic";
+
+export default async function PlansPage() {
+  const user = await requireServerAuthUser("/plans");
+
   return (
     <AppShell
+      user={user}
       active="plans"
       title="Saved plans"
       description="Review staffing plans that managers have prepared or exported."

@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "Settings | ScheduleLoop",
 };
 
-export default function SettingsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SettingsPage() {
+  const user = await requireServerAuthUser("/settings");
+
   return (
     <AppShell
+      user={user}
       active="settings"
       title="Business settings"
       description="Manage planning assumptions, account details and public-page preferences."

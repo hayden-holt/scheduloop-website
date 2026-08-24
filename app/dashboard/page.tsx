@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import { AppShell } from "../components/AppShell";
+import { requireServerAuthUser } from "../lib/serverAuth";
 
 export const metadata: Metadata = {
   title: "Dashboard | ScheduleLoop",
 };
 
-export default function DashboardPage() {
+export const dynamic = "force-dynamic";
+
+export default async function DashboardPage() {
+  const user = await requireServerAuthUser("/dashboard");
+
   return (
     <AppShell
+      user={user}
       active="dashboard"
       title="Today's staffing plan"
       description="Review forecast confidence, busiest windows and the cover blocks ready for manager judgement."

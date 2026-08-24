@@ -14,7 +14,6 @@ import {
 export function SignInForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -46,7 +45,7 @@ export function SignInForm() {
 
     setLoading(true);
     try {
-      await signInWithEmail(email.trim(), password, remember);
+      await signInWithEmail(email.trim(), password);
       window.location.assign(redirectTo);
     } catch (error) {
       setMessage(
@@ -104,14 +103,7 @@ export function SignInForm() {
       </div>
 
       <div className="form-row">
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={remember}
-            onChange={(event) => setRemember(event.target.checked)}
-          />
-          Remember me
-        </label>
+        <span className="fine-print">Secure sessions expire after 55 minutes.</span>
         <a href="/forgot-password">Forgotten password?</a>
       </div>
 
