@@ -3,7 +3,6 @@
 import { FormEvent, useState } from "react";
 import {
   AuthError,
-  hasFirebaseConfig,
   isValidEmail,
   sendPasswordReset,
 } from "../lib/auth";
@@ -43,13 +42,6 @@ export function ForgotPasswordForm() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit} noValidate>
-      {!hasFirebaseConfig() && (
-        <p className="form-note" role="status">
-          Password reset is available to invited early-access businesses once their
-          account access has been confirmed.
-        </p>
-      )}
-
       <label className="field-label" htmlFor="reset-email">
         Email address
       </label>

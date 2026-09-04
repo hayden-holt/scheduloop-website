@@ -5,8 +5,6 @@ export type AuthSession = {
   emailVerified: boolean;
 };
 
-const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? "";
-
 export class AuthError extends Error {
   code: string;
 
@@ -15,11 +13,6 @@ export class AuthError extends Error {
     this.name = "AuthError";
     this.code = code;
   }
-}
-
-export function hasFirebaseConfig() {
-  const key = API_KEY.trim();
-  return key.length > 12 && !key.includes("your-") && !key.includes("YOUR_");
 }
 
 export function isValidEmail(email: string) {
@@ -44,67 +37,16 @@ export async function restoreAuthSession(): Promise<AuthSession | null> {
 }
 
 export async function signInWithEmail(email: string, password: string) {
-  ensureFirebaseReady();
-  const data = await firebaseJson<FirebaseAuthResponse>(
-    "accounts:signInWithPassword",
-    {
-      email,
-      password,
-      returnSecureToken: true,
-    },
-  );
-
-  const response = await fetch("/api/auth/session", {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ idToken: data.idToken }),
-  });
-  const result = (await response.json().catch(() => ({}))) as {
-    error?: string;
+  const result = await postAuthJson<{
     user?: AuthSession;
-  };
+  }>("/api/auth/session", { email, password });
 
-  if (response.status === 403 && result.error === "email-verification-required") {
-    await firebaseJson("accounts:sendOobCode", {
-      requestType: "VERIFY_EMAIL",
-      idToken: data.idToken,
-    }).catch(() => undefined);
-    throw new AuthError(
-      "Verify your email before signing in. We have sent a new verification link if one was needed.",
-      "auth/email-not-verified",
-    );
-  }
-
-  if (!response.ok || !result.user) {
-    throw new AuthError(
-      "We could not start a secure session. Please try again.",
-      "auth/session-failed",
-    );
-  }
-
+  if (!result.user) throw new AuthError("We could not start a secure session.");
   return result.user;
 }
 
 export async function sendPasswordReset(email: string) {
-  ensureFirebaseReady();
-  try {
-    await firebaseJson("accounts:sendOobCode", {
-      requestType: "PASSWORD_RESET",
-      email,
-    });
-  } catch (error) {
-    if (
-      error instanceof AuthError &&
-      ["EMAIL_NOT_FOUND", "USER_NOT_FOUND", "INVALID_EMAIL"].includes(error.code)
-    ) {
-      return;
-    }
-    throw error;
-  }
+  await postAuthJson<{ ok: boolean }>("/api/auth/password-reset", { email });
 }
 
 export async function signOut() {
@@ -130,58 +72,47 @@ export function safeRedirectTarget(value: string | null, fallback = "/dashboard"
   }
 }
 
-async function firebaseJson<T>(path: string, body: Record<string, unknown>) {
-  const response = await fetch(
-    `https://identitytoolkit.googleapis.com/v1/${path}?key=${encodeURIComponent(API_KEY)}`,
-    {
+async function postAuthJson<T>(url: string, body: Record<string, unknown>) {
+  let response: Response;
+  try {
+    response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(body),
-    },
-  );
+    });
+  } catch {
+    throw new AuthError("We could not reach ScheduleLoop. Please try again.");
+  }
+
   const data = (await response.json().catch(() => ({}))) as T & {
-    error?: { message?: string };
+    error?: string;
   };
 
   if (!response.ok) {
-    const code = data.error?.message ?? "auth/error";
-    throw new AuthError(translateFirebaseError(code), code);
+    const code = data.error ?? "auth/error";
+    throw new AuthError(translateApiAuthError(code), code);
   }
 
   return data;
 }
 
-function ensureFirebaseReady() {
-  if (!hasFirebaseConfig()) {
-    throw new AuthError(
-      "Sign in is currently available to invited early-access businesses. Request a walkthrough if you need access.",
-      "auth/missing-config",
-    );
-  }
-}
-
-function translateFirebaseError(message?: string) {
-  switch (message) {
-    case "EMAIL_NOT_FOUND":
-    case "USER_NOT_FOUND":
-    case "INVALID_PASSWORD":
-    case "INVALID_LOGIN_CREDENTIALS":
-    case "INVALID_EMAIL":
+function translateApiAuthError(code?: string) {
+  switch (code) {
+    case "invalid-credentials":
       return "The email address or password is incorrect.";
-    case "TOO_MANY_ATTEMPTS_TRY_LATER":
+    case "email-verification-required":
+      return "Verify your email before signing in. We have sent a new verification link if one was needed.";
+    case "rate-limited":
       return "Too many attempts. Please try again later.";
-    case "WEAK_PASSWORD : Password should be at least 6 characters":
-    case "WEAK_PASSWORD":
-      return "Use a password with at least 8 characters.";
-    case "OPERATION_NOT_ALLOWED":
-      return "Sign in is not currently available. Please contact ScheduleLoop support.";
-    case "MISSING_PASSWORD":
-      return "Enter your password to continue.";
+    case "missing-config":
+      return "Sign in is still being configured. Please try again shortly.";
+    case "invalid-request":
+      return "Check the details and try again.";
     default:
       return "Something went wrong. Please try again.";
   }
 }
-
-type FirebaseAuthResponse = {
-  idToken: string;
-};

@@ -12,11 +12,11 @@ npm run dev
 npm test
 ```
 
-Copy `.env.example` to `.env.local` and add the Firebase web API key used by invited website accounts. Firebase web configuration is public client configuration, not an administrator credential. Never add service-account JSON, private keys or server secrets to a `NEXT_PUBLIC_` variable.
+Copy `.env.example` to `.env.local` and add the Firebase web API key used by invited website accounts as `FIREBASE_WEB_API_KEY`. Firebase web configuration is public client configuration, not an administrator credential, but the website keeps it server-side so the browser only talks to same-origin ScheduleLoop auth endpoints. Never add service-account JSON, private keys or server secrets to a browser-exposed variable.
 
 ## Authentication
 
-The website exchanges a successful Firebase email/password sign-in for a short-lived `Secure`, `HttpOnly`, `SameSite=Lax`, `__Host-` cookie. Protected pages validate that cookie with Firebase on the server before rendering and require a verified email address. Tokens are not stored in `localStorage` or `sessionStorage`, and the cookie expires after approximately 55 minutes.
+The website accepts email/password credentials through a same-origin API route, verifies them with Firebase on the server, then creates a short-lived `Secure`, `HttpOnly`, `SameSite=Lax`, `__Host-` cookie. Protected pages validate that cookie with Firebase on the server before rendering and require a verified email address. Tokens are not stored in `localStorage` or `sessionStorage`, and the cookie expires after approximately 55 minutes.
 
 The real staffing application has its own Firebase client and database rules. The website workspace routes are separate and contain no live customer business data.
 

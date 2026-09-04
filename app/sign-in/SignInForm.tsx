@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 import {
   AuthError,
-  hasFirebaseConfig,
   isValidEmail,
   restoreAuthSession,
   safeRedirectTarget,
@@ -60,13 +59,6 @@ export function SignInForm() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit} noValidate>
-      {!hasFirebaseConfig() && (
-        <p className="form-note" role="status">
-          Sign in is currently available to invited early-access businesses.
-          Request a walkthrough if you need access.
-        </p>
-      )}
-
       <label className="field-label" htmlFor="email">
         Email address
       </label>

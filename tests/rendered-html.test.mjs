@@ -56,6 +56,8 @@ test("describes the connected rota workflow accurately", async () => {
   const signInResponse = await render("/sign-in");
   const signInHtml = await signInResponse.text();
   assert.match(signInHtml, /planning staffing, building rotas/);
+  assert.doesNotMatch(signInHtml, /Sign in is currently available to invited early-access businesses/);
+  assert.doesNotMatch(signInHtml, /Remember me/);
 
   const termsResponse = await render("/terms");
   const termsHtml = await termsResponse.text();

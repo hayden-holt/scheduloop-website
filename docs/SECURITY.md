@@ -3,6 +3,7 @@
 ## Implemented controls
 
 - Next.js is pinned to a patched release and the production dependency audit is part of release verification.
+- Email/password credentials are submitted only to same-origin ScheduleLoop API routes, then verified with Firebase from the server.
 - Protected routes validate a short-lived Firebase ID token on the server before rendering.
 - The session token is held only in a `Secure`, `HttpOnly`, `SameSite=Lax`, `__Host-` cookie for up to 55 minutes.
 - Email verification is required before the server creates a website session.
@@ -43,7 +44,7 @@ The in-process throttle is a defence-in-depth control only. Worker isolates do n
 
 ## Secrets and releases
 
-- Firebase web API keys are public identifiers and must still be restricted to expected APIs and domains in Google Cloud.
+- Store the Firebase web API key in Sites as `FIREBASE_WEB_API_KEY`. Firebase web API keys are public identifiers and must still be restricted to expected APIs and domains in Google Cloud.
 - Never commit `.env`, service-account JSON, private keys, Stripe secrets, Supabase service-role keys or Firebase Admin credentials.
 - Before release, run `npm audit --omit=dev`, the build/tests, a source-map check and the repository secret scan described in the audit report.
 - Rotate any credential immediately if it appears in source control or logs, then remove it from history using a reviewed incident procedure.
