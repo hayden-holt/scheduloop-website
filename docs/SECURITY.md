@@ -7,6 +7,7 @@
 - Protected routes validate a short-lived Firebase ID token on the server before rendering.
 - The session token is held only in a `Secure`, `HttpOnly`, `SameSite=Lax`, `__Host-` cookie for up to 55 minutes.
 - Email verification is required before the server creates a website session.
+- First-run business profiles are stored in the Sites D1 binding and are keyed by the Firebase user ID.
 - Login errors do not distinguish an unknown account from an incorrect password.
 - Password reset responses do not reveal whether an account exists.
 - The session exchange checks same-origin requests and applies best-effort IP and user throttles.
