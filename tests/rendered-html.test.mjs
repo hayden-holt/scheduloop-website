@@ -66,10 +66,9 @@ test("describes the connected rota workflow accurately", async () => {
 
 test("protects workspace routes before rendering private content", async () => {
   const protectedRoutes = [
-    ["/dashboard", /Preparing your ScheduleLoop app/],
+    ["/dashboard", /Plan for 36 staff hours/],
     ["/upload", /CSV demand upload/],
-    ["/setup", /Business setup/],
-    ["/onboarding", /Set up ScheduleLoop/],
+    ["/setup", /Barista \/ Front of House/],
     ["/plans", /Monday 6 Jul/],
     ["/feedback", /Forecast review/],
     ["/settings", /Normal caution/],

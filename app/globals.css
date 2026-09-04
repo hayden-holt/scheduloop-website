@@ -2324,111 +2324,6 @@ textarea::placeholder {
   grid-column: 1 / -1;
 }
 
-.app-dashboard {
-  align-items: stretch;
-}
-
-.app-card-topline {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.role-plan-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.role-plan-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f8fbff;
-  padding: 13px 14px;
-}
-
-.role-plan-card span {
-  color: var(--ink);
-  font-weight: 850;
-}
-
-.role-plan-card strong {
-  color: var(--blue-dark);
-}
-
-.onboarding-form {
-  display: grid;
-  gap: 16px;
-}
-
-.onboarding-form label {
-  display: grid;
-  gap: 8px;
-  color: var(--ink);
-  font-weight: 850;
-}
-
-.onboarding-panel {
-  display: grid;
-  gap: 22px;
-}
-
-.single-column-form {
-  grid-template-columns: 1fr;
-}
-
-.onboarding-options {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.option-card {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f8fbff;
-  cursor: pointer;
-  padding: 14px;
-}
-
-.option-card input {
-  width: 18px;
-  min-height: 18px;
-  accent-color: var(--blue);
-}
-
-.option-card span,
-.option-card small {
-  display: block;
-}
-
-.option-card span {
-  color: var(--ink);
-  font-weight: 900;
-}
-
-.option-card small {
-  color: var(--muted);
-  font-weight: 700;
-  line-height: 1.45;
-}
-
-.option-card:has(input:checked) {
-  border-color: rgba(53, 120, 255, 0.55);
-  background: #eaf2ff;
-}
-
-.onboarding-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .upload-card {
   max-width: 720px;
 }
@@ -2560,11 +2455,6 @@ textarea::placeholder {
 
   .planner-preview-header {
     flex-direction: column;
-  }
-
-  .role-plan-grid,
-  .onboarding-options {
-    grid-template-columns: 1fr;
   }
 
   .demo-scenario-status {
